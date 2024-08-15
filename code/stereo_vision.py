@@ -35,6 +35,9 @@ class StereoVision:
         self.calibration = StereoCalibration()
         self.calibration.load_data('data')
         self.focal_length = focal_length  # Focal length calculated during calibration
+
+        # Focale distance in water
+        self.focal_length_water = focal_length/1.33 # f_water = f_air * n_air/n_water
         self.baseline = baseline  # Distance between cameras
 
         # Dictionary to store images
@@ -121,6 +124,8 @@ class StereoVision:
         valid_disparity_mask = (self.disparity > 0)
         # Calculate depth
         self.depth[valid_disparity_mask] = self.focal_length * self.baseline / self.disparity[valid_disparity_mask]
+        # Use this line for a use in water
+        #self.depth[valid_disparity_mask] = self.focal_length_water * self.baseline / self.disparity[valid_disparity_mask]
 
     def process_stereo(self):
         """

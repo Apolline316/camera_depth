@@ -21,6 +21,10 @@ class TofCamera:
         self.result_image = None  # Resulting image after processing
         self.n = 0  # Counter for saved image names
 
+    # Have to be implemented
+    def water_equation(self):
+        self.depth_water = self.depth_buf * 0.75  # distance = d_air * (c_water/c_air)
+
     def process_frame(self) -> np.ndarray:
         """
         Process the captured frame to produce a resulting image by combining depth and amplitude data.
@@ -58,8 +62,9 @@ class TofCamera:
         """
         Process the depth map using DepthMapProcessor to analyze and extract contours.
         """
+        # Replace for a under water usage
         processor = DepthMapProcessor(
-                depth_map=self.depth_buf,
+                depth_map=self.depth_buf, # self.depth_water
                 disparity=self.depth_normalized,
                 pixel_min=18000,
                 min_contour_area=20,
@@ -69,6 +74,14 @@ class TofCamera:
                 erode_iterations=3
             )
         processor.process_disparity_image()
+
+    def apply_median_filter(self, image: np.darray, ksize: int = 5) -> np.ndarray:
+        """ Apply a median filter at the image
+        :param image : input image
+        :param ksize : Kernel size of the median filter
+        :return: Filtered image
+        """
+        return cv2.medianBlur(image, ksize)
 
     def continuous_display(self):
         """
@@ -97,6 +110,12 @@ class TofCamera:
 
                     # Process the frame to get the resulting image
                     self.result_image = self.process_frame()
+                    # Use for water application
+                    # self.water_equation()
+
+                    #Apply a median filter
+                    self.result_image = self.apply_median_filter(self.result_image)
+
                     # Apply a color map for better display
                     self.result_image = cv2.applyColorMap(self.result_image, cv2.COLORMAP_JET)
 
