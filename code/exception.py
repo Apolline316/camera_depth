@@ -4,7 +4,7 @@ import numpy as np
 import csv
 
 
-def create_folder(folder):
+def folder_create(folder):
     """
     This function checks if the folder exists, if not, it creates it.
 
@@ -24,7 +24,7 @@ def create_folder(folder):
         print(f"Folder '{folder}' already exists.")
 
 
-def create_file(data, file_name, file_type, folder_name=None):
+def file_create(data, file_name, file_type, folder_name=None):
     """
     This function creates a file of the specified type in the given folder (optional).
 

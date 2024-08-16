@@ -75,7 +75,7 @@ class TofCamera:
             )
         processor.process_disparity_image()
 
-    def apply_median_filter(self, image: np.darray, ksize: int = 5) -> np.ndarray:
+    def apply_median_filter(self, image: np.ndarray, ksize: int = 5) -> np.ndarray:
         """ Apply a median filter at the image
         :param image : input image
         :param ksize : Kernel size of the median filter

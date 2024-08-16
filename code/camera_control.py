@@ -8,14 +8,14 @@ from exception import show_image
 
 
 class DualCameraCapture:
-    def __init__(self, left_cam_id=0, right_cam_id=1, preview_size=(800, 600),
+    def __init__(self, left_cam_id=0, right_cam_id=1, preview_size=(840, 820),
                  preview_type=Preview.QTGL, capture_delay=0, interval=5):
         """
         Initializes the DualCameraCapture class with camera parameters.
 
         :param left_cam_id: ID of the left camera (default 0)
         :param right_cam_id: ID of the right camera (default 1)
-        :param preview_size: Size of the preview (default (800, 600))
+        :param preview_size: Size of the preview (default (840, 820))
         :param preview_type: Type of preview (default Preview.QTGL)
         :param capture_delay: Delay before capturing the image (default 0)
         :param interval: Interval between image captures (default 5)

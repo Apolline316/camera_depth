@@ -17,8 +17,8 @@ def calibrate_cameras(cam_capture):
     print("Starting camera calibration...")
 
     # Calibration parameters
-    img_width = 800
-    img_height = 600
+    img_width = 840
+    img_height = 820
     image_size = (img_width, img_height)
 
     # Capture the necessary photos for calibration
@@ -50,8 +50,8 @@ def run_tof_camera(camera_queue):
 
 
 def run_stereo_vision():
-    img_width = 800
-    img_height = 600
+    img_width = 840
+    img_height = 820
     image_size = (img_width, img_height)
     cam_capture = DualCameraCapture(left_cam_id=2, right_cam_id=1, preview_size=image_size)
     stereo_vision = StereoVision(cam_capture)
